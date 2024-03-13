@@ -1,49 +1,49 @@
 ﻿namespace wwwapi.Enums
 {
-	public enum Class
+	public enum Class_
 	{
-		Barbarian, 
-		Bard, 
-		Cleric, 
-		Druid, 
-		Fighter, 
-		Monk, 
-		Paladin, 
+		Barbarian,
+		Bard,
+		Cleric,
+		Druid,
+		Fighter,
+		Monk,
+		Paladin,
 		Ranger,
-		Rouge, 
-		Sourcerer, 
-		Warlock, 
-		Wizard, 
-		Artificer, 
+		Rouge,
+		Sourcerer,
+		Warlock,
+		Wizard,
+		Artificer,
 		BloodHunter
 	}
 
 	public enum Alignment
 	{
-		LawfulGood, 
-		NeutralGood, 
-		ChaoticGood, 
-		LawfullNeutral, 
-		Neutral, 
+		LawfulGood,
+		NeutralGood,
+		ChaoticGood,
+		LawfullNeutral,
+		Neutral,
 		ChaoticNeutral,
-		LawfulEvil, 
-		NeutralEvil, 
+		LawfulEvil,
+		NeutralEvil,
 		ChaoticEvil
 	}
 	public enum Background
 	{
 		Acolyte,
-		Charlatan, 
-		Criminal, 
-		Entertainer, 
-		FolkHero, 
-		GuildArtisian, 
-		Hermit, 
-		Noble, 
-		Outlander, 
-		Sage, 
-		Sailor, 
-		Soldier, 
+		Charlatan,
+		Criminal,
+		Entertainer,
+		FolkHero,
+		GuildArtisian,
+		Hermit,
+		Noble,
+		Outlander,
+		Sage,
+		Sailor,
+		Soldier,
 		Urchin
 	}
 }
