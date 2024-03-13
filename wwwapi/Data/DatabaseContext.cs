@@ -16,19 +16,24 @@ namespace wwwapi.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Character>().Navigation(c => c.Score).AutoInclude();
-            modelBuilder.Entity<Character>().Navigation(c => c.ScoreProf).AutoInclude();
+            modelBuilder.Entity<Character>().Navigation(c => c.Abilities).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.SkillsProf).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.SkillsExp).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Speed).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Style).AutoInclude();
+
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Strength).AutoInclude();
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Constitution).AutoInclude();
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Dexterity).AutoInclude();
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Wisdom).AutoInclude();
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Intelligence).AutoInclude();
+            modelBuilder.Entity<Abilities>().Navigation(a => a.Charisma).AutoInclude();
 
 
             Seeder.SeedCharacters(modelBuilder);
             Seeder.SeedAbilities(modelBuilder);
             Seeder.SeedStyle(modelBuilder);
             Seeder.SeedSpeed(modelBuilder);
-            Seeder.SeedAbilitiesProf(modelBuilder);
             Seeder.SeedSkillsProf(modelBuilder);
             Seeder.SeedSkillsExp(modelBuilder);
         }

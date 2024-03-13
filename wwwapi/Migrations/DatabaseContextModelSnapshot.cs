@@ -21,7 +21,7 @@ namespace wwwapi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("wwwapi.Models.AbilityScoreProf", b =>
+            modelBuilder.Entity("wwwapi.Models.Abilities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,63 +34,75 @@ namespace wwwapi.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("character_id");
 
-                    b.Property<bool>("Charisma")
-                        .HasColumnType("boolean")
-                        .HasColumnName("charisma");
+                    b.Property<int>("CharismaId")
+                        .HasColumnType("integer")
+                        .HasColumnName("charisma_id");
 
-                    b.Property<bool>("Constitution")
-                        .HasColumnType("boolean")
-                        .HasColumnName("constitution");
+                    b.Property<int>("ConstitutionId")
+                        .HasColumnType("integer")
+                        .HasColumnName("constitution_id");
 
-                    b.Property<bool>("Dexterity")
-                        .HasColumnType("boolean")
-                        .HasColumnName("dexterity");
+                    b.Property<int>("DexterityId")
+                        .HasColumnType("integer")
+                        .HasColumnName("dexterity_id");
 
-                    b.Property<bool>("Intelligence")
-                        .HasColumnType("boolean")
-                        .HasColumnName("intelligence");
+                    b.Property<int>("IntelligenceId")
+                        .HasColumnType("integer")
+                        .HasColumnName("intelligence_id");
 
-                    b.Property<bool>("Strength")
-                        .HasColumnType("boolean")
-                        .HasColumnName("strength");
+                    b.Property<int>("StrengthID")
+                        .HasColumnType("integer")
+                        .HasColumnName("strength_id");
 
-                    b.Property<bool>("Wisdom")
-                        .HasColumnType("boolean")
-                        .HasColumnName("wisdom");
+                    b.Property<int>("WisdomId")
+                        .HasColumnType("integer")
+                        .HasColumnName("wisdom_id");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CharacterId")
                         .IsUnique();
 
-                    b.ToTable("AbilityScoreProf");
+                    b.HasIndex("CharismaId");
+
+                    b.HasIndex("ConstitutionId");
+
+                    b.HasIndex("DexterityId");
+
+                    b.HasIndex("IntelligenceId");
+
+                    b.HasIndex("StrengthID");
+
+                    b.HasIndex("WisdomId");
+
+                    b.ToTable("abilities");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CharacterId = 2,
-                            Charisma = false,
-                            Constitution = false,
-                            Dexterity = false,
-                            Intelligence = false,
-                            Strength = false,
-                            Wisdom = true
+                            CharacterId = 1,
+                            CharismaId = 1,
+                            ConstitutionId = 2,
+                            DexterityId = 3,
+                            IntelligenceId = 5,
+                            StrengthID = 4,
+                            WisdomId = 6
                         },
                         new
                         {
                             Id = 2,
-                            CharacterId = 1,
-                            Charisma = false,
-                            Constitution = true,
-                            Dexterity = false,
-                            Intelligence = false,
-                            Strength = false,
-                            Wisdom = false
+                            CharacterId = 2,
+                            CharismaId = 7,
+                            ConstitutionId = 8,
+                            DexterityId = 9,
+                            IntelligenceId = 11,
+                            StrengthID = 10,
+                            WisdomId = 12
                         });
                 });
 
-            modelBuilder.Entity("wwwapi.Models.AbilityScores", b =>
+            modelBuilder.Entity("wwwapi.Models.Ability", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,63 +111,90 @@ namespace wwwapi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CharacterId")
-                        .HasColumnType("integer")
-                        .HasColumnName("character_id");
+                    b.Property<bool>("Prof")
+                        .HasColumnType("boolean")
+                        .HasColumnName("prof");
 
-                    b.Property<int>("Charisma")
+                    b.Property<int>("Value")
                         .HasColumnType("integer")
-                        .HasColumnName("charisma");
-
-                    b.Property<int>("Constitution")
-                        .HasColumnType("integer")
-                        .HasColumnName("constitution");
-
-                    b.Property<int>("Dexterity")
-                        .HasColumnType("integer")
-                        .HasColumnName("dexterity");
-
-                    b.Property<int>("Intelligence")
-                        .HasColumnType("integer")
-                        .HasColumnName("intelligence");
-
-                    b.Property<int>("Strength")
-                        .HasColumnType("integer")
-                        .HasColumnName("strength");
-
-                    b.Property<int>("Wisdom")
-                        .HasColumnType("integer")
-                        .HasColumnName("wisdom");
+                        .HasColumnName("value");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId")
-                        .IsUnique();
-
-                    b.ToTable("ability_scores");
+                    b.ToTable("ability");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CharacterId = 1,
-                            Charisma = 6,
-                            Constitution = 3,
-                            Dexterity = 2,
-                            Intelligence = 4,
-                            Strength = 1,
-                            Wisdom = 5
+                            Prof = false,
+                            Value = 1
                         },
                         new
                         {
                             Id = 2,
-                            CharacterId = 2,
-                            Charisma = 6,
-                            Constitution = 5,
-                            Dexterity = 2,
-                            Intelligence = 4,
-                            Strength = 6,
-                            Wisdom = 5
+                            Prof = true,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Prof = false,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Prof = true,
+                            Value = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Prof = false,
+                            Value = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Prof = true,
+                            Value = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Prof = false,
+                            Value = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Prof = true,
+                            Value = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Prof = false,
+                            Value = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Prof = true,
+                            Value = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Prof = false,
+                            Value = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Prof = true,
+                            Value = 12
                         });
                 });
 
@@ -593,22 +632,61 @@ namespace wwwapi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("wwwapi.Models.AbilityScoreProf", b =>
+            modelBuilder.Entity("wwwapi.Models.Abilities", b =>
                 {
                     b.HasOne("wwwapi.Models.Character", null)
-                        .WithOne("ScoreProf")
-                        .HasForeignKey("wwwapi.Models.AbilityScoreProf", "CharacterId")
+                        .WithOne("Abilities")
+                        .HasForeignKey("wwwapi.Models.Abilities", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("wwwapi.Models.AbilityScores", b =>
-                {
-                    b.HasOne("wwwapi.Models.Character", null)
-                        .WithOne("Score")
-                        .HasForeignKey("wwwapi.Models.AbilityScores", "CharacterId")
+                    b.HasOne("wwwapi.Models.Ability", "Charisma")
+                        .WithMany()
+                        .HasForeignKey("CharismaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("wwwapi.Models.Ability", "Constitution")
+                        .WithMany()
+                        .HasForeignKey("ConstitutionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("wwwapi.Models.Ability", "Dexterity")
+                        .WithMany()
+                        .HasForeignKey("DexterityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("wwwapi.Models.Ability", "Intelligence")
+                        .WithMany()
+                        .HasForeignKey("IntelligenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("wwwapi.Models.Ability", "Strength")
+                        .WithMany()
+                        .HasForeignKey("StrengthID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("wwwapi.Models.Ability", "Wisdom")
+                        .WithMany()
+                        .HasForeignKey("WisdomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Charisma");
+
+                    b.Navigation("Constitution");
+
+                    b.Navigation("Dexterity");
+
+                    b.Navigation("Intelligence");
+
+                    b.Navigation("Strength");
+
+                    b.Navigation("Wisdom");
                 });
 
             modelBuilder.Entity("wwwapi.Models.SkillsExp", b =>
@@ -649,10 +727,7 @@ namespace wwwapi.Migrations
 
             modelBuilder.Entity("wwwapi.Models.Character", b =>
                 {
-                    b.Navigation("Score")
-                        .IsRequired();
-
-                    b.Navigation("ScoreProf")
+                    b.Navigation("Abilities")
                         .IsRequired();
 
                     b.Navigation("SkillsExp")

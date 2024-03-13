@@ -23,6 +23,41 @@ namespace wwwapi.Data
 
         public static void SeedAbilities(ModelBuilder modelBuilder)
         {
+            List<Ability> abilityList = new List<Ability>();
+            for ( int i = 1; i <= 12; i++ )
+            {
+                abilityList.Add(new Ability()
+                {
+                    Id = i, 
+                    Prof = i % 2 == 0, 
+                    Value = i % 20,
+                });
+            }
+
+
+            int numAbilities = 1;
+
+
+            List<Abilities> abilities = new List<Abilities>();
+            for ( int i = 1; i <= 2; i++ )
+            {
+                abilities.Add(new Abilities()
+                {
+                    Id = i, 
+                    CharismaId = numAbilities++,
+                    ConstitutionId = numAbilities++, 
+                    DexterityId = numAbilities++,
+                    StrengthID = numAbilities++,
+                    IntelligenceId = numAbilities++,
+                    WisdomId = numAbilities++,
+                    CharacterId = i,
+                });
+            }
+
+            modelBuilder.Entity<Ability>().HasData(abilityList);
+
+            modelBuilder.Entity<Abilities>().HasData(abilities);
+/*
             modelBuilder.Entity<AbilityScores>().HasData(new List<AbilityScores>{
                 new AbilityScores()
                 {
@@ -46,10 +81,10 @@ namespace wwwapi.Data
                     Charisma = 6,
                     CharacterId = 2
                 }
-            });
+            });*/
         }
 
-        public static void SeedAbilitiesProf(ModelBuilder modelBuilder)
+        /*public static void SeedAbilitiesProf(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AbilityScoreProf>().HasData(new List<AbilityScoreProf>
             {
@@ -76,7 +111,7 @@ namespace wwwapi.Data
                     CharacterId = 1
                 }
             });
-        }
+        }*/
 
         public static void SeedStyle(ModelBuilder modelBuilder)
         {

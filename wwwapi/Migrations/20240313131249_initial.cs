@@ -14,6 +14,20 @@ namespace wwwapi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ability",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    value = table.Column<int>(type: "integer", nullable: false),
+                    prof = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ability", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "characters",
                 columns: table => new
                 {
@@ -26,49 +40,60 @@ namespace wwwapi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AbilityScoreProf",
+                name: "abilities",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    strength = table.Column<bool>(type: "boolean", nullable: false),
-                    dexterity = table.Column<bool>(type: "boolean", nullable: false),
-                    constitution = table.Column<bool>(type: "boolean", nullable: false),
-                    intelligence = table.Column<bool>(type: "boolean", nullable: false),
-                    wisdom = table.Column<bool>(type: "boolean", nullable: false),
-                    charisma = table.Column<bool>(type: "boolean", nullable: false),
+                    strength_id = table.Column<int>(type: "integer", nullable: false),
+                    dexterity_id = table.Column<int>(type: "integer", nullable: false),
+                    constitution_id = table.Column<int>(type: "integer", nullable: false),
+                    intelligence_id = table.Column<int>(type: "integer", nullable: false),
+                    wisdom_id = table.Column<int>(type: "integer", nullable: false),
+                    charisma_id = table.Column<int>(type: "integer", nullable: false),
                     character_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AbilityScoreProf", x => x.id);
+                    table.PrimaryKey("PK_abilities", x => x.id);
                     table.ForeignKey(
-                        name: "FK_AbilityScoreProf_characters_character_id",
-                        column: x => x.character_id,
-                        principalTable: "characters",
+                        name: "FK_abilities_ability_charisma_id",
+                        column: x => x.charisma_id,
+                        principalTable: "ability",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ability_scores",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    strength = table.Column<int>(type: "integer", nullable: false),
-                    dexterity = table.Column<int>(type: "integer", nullable: false),
-                    constitution = table.Column<int>(type: "integer", nullable: false),
-                    intelligence = table.Column<int>(type: "integer", nullable: false),
-                    wisdom = table.Column<int>(type: "integer", nullable: false),
-                    charisma = table.Column<int>(type: "integer", nullable: false),
-                    character_id = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ability_scores", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ability_scores_characters_character_id",
+                        name: "FK_abilities_ability_constitution_id",
+                        column: x => x.constitution_id,
+                        principalTable: "ability",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_abilities_ability_dexterity_id",
+                        column: x => x.dexterity_id,
+                        principalTable: "ability",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_abilities_ability_intelligence_id",
+                        column: x => x.intelligence_id,
+                        principalTable: "ability",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_abilities_ability_strength_id",
+                        column: x => x.strength_id,
+                        principalTable: "ability",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_abilities_ability_wisdom_id",
+                        column: x => x.wisdom_id,
+                        principalTable: "ability",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_abilities_characters_character_id",
                         column: x => x.character_id,
                         principalTable: "characters",
                         principalColumn: "id",
@@ -197,6 +222,25 @@ namespace wwwapi.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ability",
+                columns: new[] { "id", "prof", "value" },
+                values: new object[,]
+                {
+                    { 1, false, 1 },
+                    { 2, true, 2 },
+                    { 3, false, 3 },
+                    { 4, true, 4 },
+                    { 5, false, 5 },
+                    { 6, true, 6 },
+                    { 7, false, 7 },
+                    { 8, true, 8 },
+                    { 9, false, 9 },
+                    { 10, true, 10 },
+                    { 11, false, 11 },
+                    { 12, true, 12 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "characters",
                 column: "id",
                 values: new object[]
@@ -206,12 +250,39 @@ namespace wwwapi.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "ability_scores",
-                columns: new[] { "id", "character_id", "charisma", "constitution", "dexterity", "intelligence", "strength", "wisdom" },
+                table: "abilities",
+                columns: new[] { "id", "character_id", "charisma_id", "constitution_id", "dexterity_id", "intelligence_id", "strength_id", "wisdom_id" },
                 values: new object[,]
                 {
-                    { 1, 1, 6, 3, 2, 4, 1, 5 },
-                    { 2, 2, 6, 5, 2, 4, 6, 5 }
+                    { 1, 1, 1, 2, 3, 5, 4, 6 },
+                    { 2, 2, 7, 8, 9, 11, 10, 12 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "skills_exp",
+                columns: new[] { "id", "animal_handling", "arcana", "athletics", "character_id", "deception", "history", "insight", "intimidation", "investigation", "medicine", "nature", "perception", "persuation", "religion", "sleight_of_hand", "stealth", "survival" },
+                values: new object[,]
+                {
+                    { 1, false, false, true, 2, false, false, false, true, false, false, false, false, false, true, false, false, false },
+                    { 2, false, false, false, 1, false, true, false, false, false, true, false, false, false, true, false, false, false }
+                });
+
+            migrationBuilder.InsertData(
+                table: "skills_prof",
+                columns: new[] { "id", "animal_handling", "arcana", "athletics", "character_id", "deception", "history", "insight", "intimidation", "investigation", "medicine", "nature", "perception", "persuation", "religion", "sleight_of_hand", "stealth", "survival" },
+                values: new object[,]
+                {
+                    { 1, false, false, true, 2, false, false, false, false, false, false, false, false, false, true, true, false, false },
+                    { 2, false, false, false, 1, false, false, false, true, false, true, false, false, false, true, false, false, false }
+                });
+
+            migrationBuilder.InsertData(
+                table: "speed",
+                columns: new[] { "id", "character_id", "value" },
+                values: new object[,]
+                {
+                    { 1, 1, 30 },
+                    { 2, 2, 35 }
                 });
 
             migrationBuilder.InsertData(
@@ -224,16 +295,40 @@ namespace wwwapi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbilityScoreProf_character_id",
-                table: "AbilityScoreProf",
+                name: "IX_abilities_character_id",
+                table: "abilities",
                 column: "character_id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ability_scores_character_id",
-                table: "ability_scores",
-                column: "character_id",
-                unique: true);
+                name: "IX_abilities_charisma_id",
+                table: "abilities",
+                column: "charisma_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abilities_constitution_id",
+                table: "abilities",
+                column: "constitution_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abilities_dexterity_id",
+                table: "abilities",
+                column: "dexterity_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abilities_intelligence_id",
+                table: "abilities",
+                column: "intelligence_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abilities_strength_id",
+                table: "abilities",
+                column: "strength_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_abilities_wisdom_id",
+                table: "abilities",
+                column: "wisdom_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_skills_exp_character_id",
@@ -264,10 +359,7 @@ namespace wwwapi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AbilityScoreProf");
-
-            migrationBuilder.DropTable(
-                name: "ability_scores");
+                name: "abilities");
 
             migrationBuilder.DropTable(
                 name: "skills_exp");
@@ -280,6 +372,9 @@ namespace wwwapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "styles");
+
+            migrationBuilder.DropTable(
+                name: "ability");
 
             migrationBuilder.DropTable(
                 name: "characters");
