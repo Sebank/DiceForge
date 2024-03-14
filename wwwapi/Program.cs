@@ -11,7 +11,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DatabaseContext>();
 builder.Services.AddScoped<IRepository<Character>, Repository<Character>>();
-builder.Services.AddScoped<IRepository<AbilityScores>, Repository<AbilityScores>>();
 builder.Services.AddScoped<IRepository<Style>,  Repository<Style>>();
 
 var app = builder.Build();

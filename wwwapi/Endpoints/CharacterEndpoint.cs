@@ -12,7 +12,6 @@ namespace wwwapi.Endpoints
             var characterGroup = app.MapGroup("character");
 
             characterGroup.MapGet("", GetCharacters);
-            characterGroup.MapGet("/abilties/{characterId}", GetAbilityScores);
             characterGroup.MapGet("/styles/{characterId}", GetStyle);
         }
 
@@ -24,15 +23,6 @@ namespace wwwapi.Endpoints
                 return TypedResults.NotFound("No characters found"); 
 
             return TypedResults.Ok(characters);
-        }
-
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult GetAbilityScores(IRepository<AbilityScores> repository, int id)
-        {
-            IQueryable<AbilityScores> abilityScores = repository.GetByCondition(x => x.CharacterId == id);
-            if (abilityScores == null) return TypedResults.NotFound("Ability scores not found"); 
-            return TypedResults.Ok(abilityScores);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
