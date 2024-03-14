@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace wwwapi.Models
 {
@@ -31,7 +32,7 @@ namespace wwwapi.Models
         public Alignment Alignment { get; set; }
         [Column("background")]
         public Background Background { get; set; }
-        [Column("character_id"), ForeignKey("Character")]
+        [Column("character_id"), ForeignKey("Character"), JsonIgnore]
         public int CharacterId { get; set; }
     }
 

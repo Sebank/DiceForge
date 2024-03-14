@@ -17,8 +17,7 @@ namespace wwwapi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Character>().Navigation(c => c.Abilities).AutoInclude();
-            modelBuilder.Entity<Character>().Navigation(c => c.SkillsProf).AutoInclude();
-            modelBuilder.Entity<Character>().Navigation(c => c.SkillsExp).AutoInclude();
+            modelBuilder.Entity<Character>().Navigation(c => c.Skills).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Speed).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Style).AutoInclude();
 
@@ -29,13 +28,30 @@ namespace wwwapi.Data
             modelBuilder.Entity<Abilities>().Navigation(a => a.Intelligence).AutoInclude();
             modelBuilder.Entity<Abilities>().Navigation(a => a.Charisma).AutoInclude();
 
+            modelBuilder.Entity<Skills>().Navigation(s => s.Acrobatics).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.AnimalHandling).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Arcana).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Athletics).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Deception).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.History).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Insight).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Intimidation).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Investigation).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Medicine).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Nature).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Perception).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Performance).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Persuation).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Religion).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.SleightOfHand).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Stealth).AutoInclude();
+            modelBuilder.Entity<Skills>().Navigation(s => s.Survival).AutoInclude();
 
             Seeder.SeedCharacters(modelBuilder);
             Seeder.SeedAbilities(modelBuilder);
             Seeder.SeedStyle(modelBuilder);
             Seeder.SeedSpeed(modelBuilder);
-            Seeder.SeedSkillsProf(modelBuilder);
-            Seeder.SeedSkillsExp(modelBuilder);
+            Seeder.SeedSkills(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

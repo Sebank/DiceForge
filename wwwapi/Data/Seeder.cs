@@ -43,13 +43,13 @@ namespace wwwapi.Data
             {
                 abilities.Add(new Abilities()
                 {
-                    Id = i, 
-                    CharismaId = numAbilities++,
-                    ConstitutionId = numAbilities++, 
-                    DexterityId = numAbilities++,
+                    Id = i,
                     StrengthID = numAbilities++,
+                    DexterityId = numAbilities++,
+                    ConstitutionId = numAbilities++,
                     IntelligenceId = numAbilities++,
                     WisdomId = numAbilities++,
+                    CharismaId = numAbilities++,
                     CharacterId = i,
                 });
             }
@@ -156,9 +156,57 @@ namespace wwwapi.Data
             });
         }
 
-        public static void SeedSkillsExp(ModelBuilder modelBuilder)
+        public static void SeedSkills(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SkillsExp>().HasData(new List<SkillsExp>
+
+            List<Skills> skills = new List<Skills>();
+
+            int numSkills = 1;
+
+            for (int i = 1; i <= 2; i++)
+            {
+                skills.Add(new Skills()
+                {
+                    Id = i,
+                    AcrobaticsId = numSkills++,
+                    AnimalHandlingId = numSkills++,
+                    ArcanaId = numSkills++,
+                    AthleticsId = numSkills++,
+                    DeceptionId = numSkills++,
+                    HistoryId = numSkills++,
+                    InsightId = numSkills++,
+                    IntimidationId = numSkills++,
+                    InvestigationId = numSkills++,
+                    MedicineId = numSkills++,
+                    NatureId = numSkills++,
+                    PerceptionId = numSkills++,
+                    PerformanceId = numSkills++,
+                    PersuationId = numSkills++,
+                    ReligionId = numSkills++,
+                    SleightOfHandId = numSkills++,
+                    StealthId = numSkills++,
+                    SurvivalId = numSkills++,
+                    CharacterId = i,
+                });
+            }
+
+            List<Skill> skillList = new List<Skill>();
+
+            for (int i = 1; i <= numSkills; i++)
+            {
+                skillList.Add(new Skill()
+                {
+                    Id = i,
+                    Prof = i % 3 == 0,
+                    Exp = i % 5 == 0
+                });
+            }
+
+            modelBuilder.Entity<Skill>().HasData(skillList);
+
+            modelBuilder.Entity<Skills>().HasData(skills);
+        }
+            /*modelBuilder.Entity<SkillsExp>().HasData(new List<SkillsExp>
             {
                 new SkillsExp() {
                     Id = 1,
@@ -248,7 +296,7 @@ namespace wwwapi.Data
                     CharacterId = 1
                 },
             });
-        }
+        }*/
 
         public static void SeedSpeed(ModelBuilder modelBuilder)
         {

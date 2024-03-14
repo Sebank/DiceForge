@@ -9,8 +9,7 @@ namespace wwwapi.Models
         public int Id { get; set; }
         public Style Style { get; set; }
         public Abilities Abilities { get; set; }
-        public SkillsProf SkillsProf { get; set; }
-        public SkillsExp SkillsExp { get; set; }
+        public Skills Skills { get; set; }
         public Speed Speed { get; set; }
     }
 }
