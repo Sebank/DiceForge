@@ -23,18 +23,6 @@ namespace wwwapi.Data
 
         public static void SeedAbilities(ModelBuilder modelBuilder)
         {
-            List<Ability> abilityList = new List<Ability>();
-            for ( int i = 1; i <= 12; i++ )
-            {
-                abilityList.Add(new Ability()
-                {
-                    Id = i, 
-                    Prof = i % 2 == 0, 
-                    Value = i % 20,
-                });
-            }
-
-
             int numAbilities = 1;
 
 
@@ -54,64 +42,21 @@ namespace wwwapi.Data
                 });
             }
 
+            List<Ability> abilityList = new List<Ability>();
+            for (int i = 1; i < numAbilities; i++)
+            {
+                abilityList.Add(new Ability()
+                {
+                    Id = i,
+                    Prof = i % 2 == 0,
+                    Value = i % 20,
+                });
+            }
+
             modelBuilder.Entity<Ability>().HasData(abilityList);
 
             modelBuilder.Entity<Abilities>().HasData(abilities);
-/*
-            modelBuilder.Entity<AbilityScores>().HasData(new List<AbilityScores>{
-                new AbilityScores()
-                {
-                    Id = 1,
-                    Strength = 1,
-                    Dexterity = 2,
-                    Constitution = 3,
-                    Intelligence = 4,
-                    Wisdom = 5,
-                    Charisma = 6,
-                    CharacterId = 1
-                },
-                new AbilityScores()
-                {
-                    Id = 2,
-                    Strength = 6,
-                    Dexterity = 2,
-                    Constitution = 5,
-                    Intelligence = 4,
-                    Wisdom = 5,
-                    Charisma = 6,
-                    CharacterId = 2
-                }
-            });*/
         }
-
-        /*public static void SeedAbilitiesProf(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AbilityScoreProf>().HasData(new List<AbilityScoreProf>
-            {
-                new AbilityScoreProf()
-                {
-                    Id = 1, 
-                    Strength = false, 
-                    Dexterity = false, 
-                    Constitution = false, 
-                    Intelligence = false, 
-                    Wisdom = true,
-                    Charisma = false,
-                    CharacterId = 2
-                },
-                new AbilityScoreProf()
-                {
-                    Id = 2,
-                    Strength = false,
-                    Dexterity = false,
-                    Constitution = true,
-                    Intelligence = false,
-                    Wisdom = false,
-                    Charisma = false,
-                    CharacterId = 1
-                }
-            });
-        }*/
 
         public static void SeedStyle(ModelBuilder modelBuilder)
         {
@@ -168,6 +113,7 @@ namespace wwwapi.Data
                 skills.Add(new Skills()
                 {
                     Id = i,
+
                     AcrobaticsId = numSkills++,
                     AnimalHandlingId = numSkills++,
                     ArcanaId = numSkills++,
@@ -186,13 +132,14 @@ namespace wwwapi.Data
                     SleightOfHandId = numSkills++,
                     StealthId = numSkills++,
                     SurvivalId = numSkills++,
+
                     CharacterId = i,
                 });
             }
 
             List<Skill> skillList = new List<Skill>();
 
-            for (int i = 1; i <= numSkills; i++)
+            for (int i = 1; i < numSkills; i++)
             {
                 skillList.Add(new Skill()
                 {
@@ -206,97 +153,6 @@ namespace wwwapi.Data
 
             modelBuilder.Entity<Skills>().HasData(skills);
         }
-            /*modelBuilder.Entity<SkillsExp>().HasData(new List<SkillsExp>
-            {
-                new SkillsExp() {
-                    Id = 1,
-                    AnimalHandling = false,
-                    Arcana = false,
-                    Athletics = true,
-                    Deception = false,
-                    History = false,
-                    Insight = false,
-                    Intimidation = true,
-                    Investigation = false,
-                    Medicine = false,
-                    Nature = false,
-                    Perception = false,
-                    Persuation = false,
-                    Religion = true,
-                    SleightOfHand = false,
-                    Stealth = false,
-                    Survival = false,
-                    CharacterId = 2
-                },
-                new SkillsExp() {
-                    Id = 2,
-                    AnimalHandling = false,
-                    Arcana = false,
-                    Athletics = false,
-                    Deception = false,
-                    History = true,
-                    Insight = false,
-                    Intimidation = false,
-                    Investigation = false,
-                    Medicine = true,
-                    Nature = false,
-                    Perception = false,
-                    Persuation = false,
-                    Religion = true,
-                    SleightOfHand = false,
-                    Stealth = false,
-                    Survival = false,
-                    CharacterId = 1
-                },
-            });
-        }
-
-        public static void SeedSkillsProf(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<SkillsProf>().HasData(new List<SkillsProf>
-            {
-                new SkillsProf() {
-                    Id = 1,
-                    AnimalHandling = false,
-                    Arcana = false,
-                    Athletics = true,
-                    Deception = false,
-                    History = false,
-                    Insight = false,
-                    Intimidation = false,
-                    Investigation = false,
-                    Medicine = false,
-                    Nature = false,
-                    Perception = false,
-                    Persuation = false,
-                    Religion = true,
-                    SleightOfHand = true,
-                    Stealth = false,
-                    Survival = false,
-                    CharacterId = 2
-                },
-                new SkillsProf() {
-                    Id = 2,
-                    AnimalHandling = false,
-                    Arcana = false,
-                    Athletics = false,
-                    Deception = false,
-                    History = false,
-                    Insight = false,
-                    Intimidation = true,
-                    Investigation = false,
-                    Medicine = true,
-                    Nature = false,
-                    Perception = false,
-                    Persuation = false,
-                    Religion = true,
-                    SleightOfHand = false,
-                    Stealth = false,
-                    Survival = false,
-                    CharacterId = 1
-                },
-            });
-        }*/
 
         public static void SeedSpeed(ModelBuilder modelBuilder)
         {

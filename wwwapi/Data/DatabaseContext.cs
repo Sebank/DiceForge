@@ -16,11 +16,13 @@ namespace wwwapi.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // auto include for getting all information though character
             modelBuilder.Entity<Character>().Navigation(c => c.Abilities).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Skills).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Speed).AutoInclude();
             modelBuilder.Entity<Character>().Navigation(c => c.Style).AutoInclude();
 
+            // auto include for getting all information through abilities
             modelBuilder.Entity<Abilities>().Navigation(a => a.Strength).AutoInclude();
             modelBuilder.Entity<Abilities>().Navigation(a => a.Constitution).AutoInclude();
             modelBuilder.Entity<Abilities>().Navigation(a => a.Dexterity).AutoInclude();
@@ -28,6 +30,7 @@ namespace wwwapi.Data
             modelBuilder.Entity<Abilities>().Navigation(a => a.Intelligence).AutoInclude();
             modelBuilder.Entity<Abilities>().Navigation(a => a.Charisma).AutoInclude();
 
+            // auto include for getting all information through skills
             modelBuilder.Entity<Skills>().Navigation(s => s.Acrobatics).AutoInclude();
             modelBuilder.Entity<Skills>().Navigation(s => s.AnimalHandling).AutoInclude();
             modelBuilder.Entity<Skills>().Navigation(s => s.Arcana).AutoInclude();
@@ -47,6 +50,7 @@ namespace wwwapi.Data
             modelBuilder.Entity<Skills>().Navigation(s => s.Stealth).AutoInclude();
             modelBuilder.Entity<Skills>().Navigation(s => s.Survival).AutoInclude();
 
+            // Seed info
             Seeder.SeedCharacters(modelBuilder);
             Seeder.SeedAbilities(modelBuilder);
             Seeder.SeedStyle(modelBuilder);
